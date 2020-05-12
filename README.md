@@ -1,6 +1,6 @@
 # diyapis
 
-[![NPM](https://nodei.co/npm/diyapis.png?compact=true)](https://nodei.co/npm/diyapis/)  [![CircleCI](https://circleci.com/gh/chirpers/diyapis.svg?style=svg)](https://circleci.com/gh/chirpers/diyapis)
+[![NPM](https://nodei.co/npm/diyapis.png?compact=true)](https://nodei.co/npm/diyapis/)  [![CircleCI](https://circleci.com/gh/chirpers/diyapis-npm.svg?style=svg)](https://circleci.com/gh/chirpers/diyapis-npm)
 
 Client helper library for [diyapis.com](https://diyapis.com) - the Do-it-Yourself API creator.
 
