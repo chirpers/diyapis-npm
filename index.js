@@ -1,7 +1,7 @@
 const mqtt = require('mqtt');
 const { apiFetch } = require('./fetch');
 
-function creatClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
+function createClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
   let mqttClient;
 
   if (!apiUrl && !API_URL && !appName) {
@@ -67,5 +67,5 @@ function creatClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
 }
 
 module.exports = {
-  creatClient
+  createClient
 };
