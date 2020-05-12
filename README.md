@@ -26,8 +26,8 @@ client.apiFetch('/myTest')
 // connect to the diyapis mqtt broker after authenticating to the API
 client.connect();
 
-// listen for mqtt messages
-client.on('message', (topic, msg) => {
+// listen for mqtt object messages that encoded as json 
+client.on('json', (topic, msg) => {
   console.log(msg);
 });
 

@@ -35,7 +35,7 @@ function createClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
       client.mqttClient = mqttClient;
       mqttClient.on('message', (topic, msg) => {
         try {
-          msg = JSON.parse(msg);
+          msg = JSON.parse(msg.toString());
           mqttClient.emit('json', topic, msg);
         } catch (err) {
           // continue regardless of error
