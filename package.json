@@ -1,0 +1,39 @@
+{
+  "name": "diyapis",
+  "version": "1.0.0",
+  "description": "client helper for diyapis",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./index.js ./fetch.js --ext .js",
+    "test": "npm run lint && npm run mocha",
+    "mocha": "_mocha",
+    "build": "browserify -p tinyify index.js -o dist/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chirpers/diyapis-npm"
+  },
+  "keywords": [
+    "websocket",
+    "ws",
+    "diyapis",
+    "mqtt"
+  ],
+  "author": "Luis Montes",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^4.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.1",
+    "chai": "^4.2.0",
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "mocha": "^7.1.2",
+    "mqtt": "^4.0.1",
+    "tinyify": "^2.5.2"
+  }
+}
