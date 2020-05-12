@@ -1,2 +1,2 @@
 const diyapis = require('./index');
-global.diaypis = diyapis;
+global.diyapis = diyapis;

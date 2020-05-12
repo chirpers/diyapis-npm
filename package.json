@@ -1,6 +1,6 @@
 {
   "name": "diyapis",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "client helper for diyapis",
   "main": "index.js",
   "scripts": {
