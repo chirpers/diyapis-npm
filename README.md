@@ -23,7 +23,7 @@ client.apiFetch('/myTest')
     console.log(result);
   });
 
-// connect to the diyapis mqtt broker
+// connect to the diyapis mqtt broker after authenticating to the API
 client.connect();
 
 // listen for mqtt messages
