@@ -33,11 +33,29 @@ function createClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
       options = { username: appName, ...options };
       mqttClient = mqtt.connect(wsUrl, options);
       client.mqttClient = mqttClient;
+      mqttClient.on('message', (topic, msg) => {
+        try {
+          msg = JSON.parse(msg);
+          mqttClient.emit('json', topic, msg);
+        } catch (err) {
+          // continue regardless of error
+        }
+      });
       return mqttClient;
     },
     on: (...args) => {
       if (mqttClient) {
         return mqttClient.on(...args);
+      }
+    },
+    publish: (topic, payload, ...restArgs) => {
+      if (mqttClient) {
+        if (typeof payload === 'object') {
+          payload = JSON.stringify(payload);
+        } else {
+          payload = String(payload);
+        }
+        return mqttClient.publish(topic, payload, ...restArgs);
       }
     },
     subscribe: (...args) => {
@@ -60,6 +78,9 @@ function createClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
     },
     tokenLogin: (token) => {
       return client.apiFetch('/users/oauth_token', { method: 'POST', body: { token } });
+    },
+    verifyUser: () => {
+      return client.apiFetch('/users/me');
     }
   };
 
