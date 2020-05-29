@@ -29,7 +29,7 @@ function createClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
     if (topic.startsWith('/')) {
       topic = topic.substring(1);
     }
-    return `${appName}/${topic}`;
+    return `/${appName}/${topic}`;
   }
 
   const client = {
