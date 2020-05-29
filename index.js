@@ -22,6 +22,16 @@ function createClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
     wsUrl = `${url.protocol === 'https:' ? 'wss:' : 'ws:'}//${url.host}/${appName}`;
   }
 
+  function getFullTopic(topic) {
+    if (!topic) {
+      return;
+    }
+    if (topic.startsWith('/')) {
+      topic = topic.substring(1);
+    }
+    return `${appName}/${topic}`;
+  }
+
   const client = {
     apiUrl,
     wsUrl,
@@ -49,24 +59,31 @@ function createClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
       }
     },
     publish: (topic, payload, ...restArgs) => {
-      if (mqttClient) {
-        if (typeof payload === 'object') {
-          payload = JSON.stringify(payload);
-        } else {
-          payload = String(payload);
-        }
-        return mqttClient.publish(topic, payload, ...restArgs);
+      topic = getFullTopic(topic);
+      if (!topic || !mqttClient) {
+        return;
       }
+
+      if (typeof payload === 'object') {
+        payload = JSON.stringify(payload);
+      } else {
+        payload = String(payload);
+      }
+      return mqttClient.publish(topic, payload, ...restArgs);
     },
-    subscribe: (...args) => {
-      if (mqttClient) {
-        return mqttClient.subscribe(...args);
+    subscribe: (topic, ...args) => {
+      topic = getFullTopic(topic);
+      if (!topic || !mqttClient) {
+        return;
       }
+      return mqttClient.subscribe(topic, ...args);
     },
-    unsubscribe: (...args) => {
-      if (mqttClient) {
-        return mqttClient.unsubscribe(...args);
+    unsubscribe: (topic, ...args) => {
+      topic = getFullTopic(topic);
+      if (!topic || !mqttClient) {
+        return;
       }
+      return mqttClient.subscribe(topic, ...args);
     },
     close: (...args) => {
       if (mqttClient) {
