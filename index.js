@@ -90,8 +90,8 @@ function createClient({ apiUrl = '', API_URL = '', appName = '', wsUrl = '' }) {
         return mqttClient.close(...args);
       }
     },
-    oauthStart: () => {
-      return client.apiFetch('/users/oauth_start');
+    oauthStart: (mode) => {
+      return client.apiFetch(`/users/oauth_start${mode ? '?mode=' + mode : ''}`);
     },
     tokenLogin: (token) => {
       return client.apiFetch('/users/oauth_token', { method: 'POST', body: { token } });
